@@ -75,7 +75,7 @@ const Sidebar = () => {
             <ul className="space-y-3 ml-2">
               {/* Dashboard */}
               <li>
-                <Link href="/admin/admin-dash">
+                <Link href="/admin/dashboard">
                   <div className="flex items-center p-2 hover:bg-gray-700 rounded cursor-pointer">
                     <FaTachometerAlt size={18} />
                     <span className="ml-2 text-sm">Dashboard</span>

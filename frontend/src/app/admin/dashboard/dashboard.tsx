@@ -1,13 +1,13 @@
 "use client";
-import Link from "next/link";
+
 import React from "react";
-import Sort from "@/app/components/Sorting/page";
+import Sort from "@/app/components/Sorting/orderSorting";
 import PaginationComponent from "@/app/components/Navigation/Pagination/page";
 import StatusFilter from "@/app/components/DataDisplay/Filter/statusfilter";
 import StatusFilterIndicator from "@/app/components/DataDisplay/Filter/statusfilterindicator";
-import OrderTable from "@/app/components/DataDisplay/Table/order-table";
-import Sidebar from "@/app/components/Navigation/Sidebar/sidebar";
+import OrderTable from "@/app/components/DataDisplay/Table/orderTable";
 
+//
 const orders = [
   {
     orderNumber: "001",
@@ -163,14 +163,20 @@ const Dashboard: React.FC = () => {
     ที่ยกเลิก: "bg-red-400",
   };
 
+  const statusOrder = [
+    "ที่ยังไม่ได้รับ",
+    "ที่กำลังจัดเตรียม",
+    "รอขนส่งมารับ",
+    "ที่จัดส่งแล้ว",
+    "ที่ส่งเรียบร้อย",
+    "ที่ยกเลิก",
+  ];
   const handleSort = (value: string) => {
     setSortOrder(value);
     let sorted = [...orders];
-
     if (statusFilter) {
       sorted = sorted.filter((order) => order.orderStatus === statusFilter);
     }
-
     switch (value) {
       case "date-desc":
         sorted.sort(
@@ -187,12 +193,15 @@ const Dashboard: React.FC = () => {
         );
         break;
       case "status":
-        sorted.sort((a, b) => a.orderStatus.localeCompare(b.orderStatus));
+        sorted.sort(
+          (a, b) =>
+            statusOrder.indexOf(a.orderStatus) -
+            statusOrder.indexOf(b.orderStatus)
+        );
         break;
       default:
         break;
     }
-
     setSortedOrders(sorted);
   };
 
@@ -219,28 +228,27 @@ const Dashboard: React.FC = () => {
     handleSort(sortOrder);
   }, [statusFilter]);
 
+  const openModal = (order: any) => {
+    console.log("Modal opened for:", order);
+  };
+
   return (
     <div>
       <div className="p-4 lg:p-6 lg:ml-10">
         <h1 className="text-xl lg:text-2xl font-bold mb-4">Dashboard</h1>
-
         <StatusFilter
           orderStatuses={orderStatuses}
           statusFilter={statusFilter}
           handleStatusFilter={handleStatusFilter}
         />
-
         <StatusFilterIndicator
           statusFilter={statusFilter}
           statusColorMap={statusColorMap}
           handleClearFilter={handleClearFilter}
         />
-
         <Sort sortOrder={sortOrder} handleSort={handleSort} />
-
-        {/* Adding the order table component here */}
-        <OrderTable orders={currentOrders} />
-
+        {/* Adding the order table component with the openModal prop */}
+        <OrderTable orders={currentOrders} openModal={openModal} />
         <div className="flex justify-center mt-4">
           <PaginationComponent
             totalPages={totalPages}
