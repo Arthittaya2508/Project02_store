@@ -1,12 +1,13 @@
 import express, { Request, Response } from "express";
-import db from "./../../lib/db";
+import db from "../../lib/db";
 
 const router = express.Router();
 
 // Fetch all bands
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const [rows] = await db.query("SELECT * FROM bands");
+    const result = await db.query("SELECT * FROM address");
+    const rows = result[0];
     res.json(rows);
   } catch (error) {
     console.error("Error fetching bands:", error);

@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import db from "./../../lib/db"; // เชื่อมต่อกับฐานข้อมูล (ตามโค้ดที่ใช้)
+import db from "../../lib/db"; // เชื่อมต่อกับฐานข้อมูล (ตามโค้ดที่ใช้)
 
 const router = express.Router();
 

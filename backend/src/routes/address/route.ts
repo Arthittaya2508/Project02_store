@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
-import db from "./../../lib/db";
+import db from "../../lib/db";
 const router = express.Router();
 
 // Add addresses from JSON file
@@ -38,7 +38,8 @@ router.post("/", async (req: Request, res: Response) => {
 router.get("/", async (req: Request, res: Response) => {
   try {
     // Retrieve addresses from the database
-    const [rows] = await db.query("SELECT * FROM addresses");
+    const result = await db.query("SELECT * FROM address");
+    const rows = result[0]; // Assuming the first element is the rows
 
     // Log the retrieved rows for debugging
     console.log("Retrieved addresses:", rows);

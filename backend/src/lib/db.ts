@@ -1,10 +1,9 @@
 import mysql from "mysql2";
 import dotenv from "dotenv";
 
-// โหลดค่า environment variables จาก .env
 dotenv.config();
 
-// ตั้งค่าการเชื่อมต่อฐานข้อมูล
+// สร้าง pool สำหรับการเชื่อมต่อฐานข้อมูล
 const pool = mysql.createPool({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,

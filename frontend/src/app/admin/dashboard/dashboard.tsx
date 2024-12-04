@@ -2,10 +2,10 @@
 
 import React from "react";
 import Sort from "@/app/components/Sorting/orderSorting";
-import PaginationComponent from "@/app/components/Navigation/Pagination/page";
-import StatusFilter from "@/app/components/DataDisplay/Filter/statusfilter";
-import StatusFilterIndicator from "@/app/components/DataDisplay/Filter/statusfilterindicator";
-import OrderTable from "@/app/components/DataDisplay/Table/orderTable";
+import PaginationComponent from "@/app/components/Pagination/page";
+import StatusFilter from "@/app/components/Filter/statusfilter";
+import StatusFilterIndicator from "@/app/components/Filter/statusfilterindicator";
+import OrderTable from "@/app/components/Table/orderTable";
 
 //
 const orders = [

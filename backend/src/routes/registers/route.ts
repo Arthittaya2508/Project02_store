@@ -1,5 +1,5 @@
 import express, { Request, Response } from "express";
-import db from "./../../lib/db";
+import db from "../../lib/db";
 const router = express.Router();
 
 // Register a new user
